@@ -1,0 +1,64 @@
+// Basic Chatbot Widget for KloudEra.ai
+(function() {
+    let chatWidget = document.createElement('div');
+    chatWidget.id = 'kloudera-chatbot';
+    chatWidget.style.position = 'fixed';
+    chatWidget.style.bottom = '20px';
+    chatWidget.style.right = '20px';
+    chatWidget.style.width = '300px';
+    chatWidget.style.height = '400px';
+    chatWidget.style.background = '#fff';
+    chatWidget.style.border = '1px solid #ddd';
+    chatWidget.style.borderRadius = '10px';
+    chatWidget.style.boxShadow = '0px 4px 6px rgba(0,0,0,0.1)';
+    chatWidget.style.overflow = 'hidden';
+    chatWidget.style.display = 'flex';
+    chatWidget.style.flexDirection = 'column';
+    
+    let chatHeader = document.createElement('div');
+    chatHeader.style.background = '#007bff';
+    chatHeader.style.color = '#fff';
+    chatHeader.style.padding = '10px';
+    chatHeader.style.textAlign = 'center';
+    chatHeader.style.fontSize = '16px';
+    chatHeader.style.fontWeight = 'bold';
+    chatHeader.innerText = 'KloudEra AI Chatbot';
+    chatWidget.appendChild(chatHeader);
+    
+    let chatBody = document.createElement('div');
+    chatBody.style.flex = '1';
+    chatBody.style.padding = '10px';
+    chatBody.style.overflowY = 'auto';
+    chatBody.style.fontSize = '14px';
+    chatBody.innerHTML = '<p>Hi! How can I assist you today?</p>';
+    chatWidget.appendChild(chatBody);
+    
+    let chatInput = document.createElement('input');
+    chatInput.type = 'text';
+    chatInput.placeholder = 'Type a message...';
+    chatInput.style.width = '100%';
+    chatInput.style.padding = '10px';
+    chatInput.style.border = 'none';
+    chatInput.style.outline = 'none';
+    
+    chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && chatInput.value.trim() !== '') {
+            let userMessage = document.createElement('p');
+            userMessage.style.textAlign = 'right';
+            userMessage.innerText = chatInput.value;
+            chatBody.appendChild(userMessage);
+            chatInput.value = '';
+            
+            // Simulate bot response (To be replaced with API call)
+            setTimeout(() => {
+                let botMessage = document.createElement('p');
+                botMessage.innerText = 'I am still learning!';
+                chatBody.appendChild(botMessage);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+        }
+    });
+    
+    chatWidget.appendChild(chatInput);
+    document.body.appendChild(chatWidget);
+})();
